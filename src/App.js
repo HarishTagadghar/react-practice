@@ -1,25 +1,51 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Person from './components/Person'
+class App extends React.Component {
+state = {
+  persons :[
+    {name:"mark",age:20},
+    {name:"sandy",age:21},
+    {name:"jack",age:23}
+  ],
+  toggle:false
 }
 
-export default App;
+  render() {
+    const handleChange = (e,i) => {
+      let person = this.state.persons[i];
+      person.name = e.target.value;
+      let  persons = [...this.state.persons]
+      persons[i] = person
+      this.setState({persons})
+      }
+
+      const handletoggle = () => {
+        let tog = this.state.toggle;
+        this.setState({toggle : !tog})
+      }
+      const handleDelete = (e,i) => {
+      let persons = [...this.state.persons];
+      persons.splice(i , 1)
+
+      this.setState({persons : persons})
+
+      }
+    return (
+            <div className="center">
+              <h1 >React Practice</h1>
+              <button onClick={handletoggle}>Toggle</button>
+      
+             {this.state.toggle ? (
+              <div>
+                 {this.state.persons.map((person,index) => {
+                   return <Person clicked = {(event) => handleDelete(event , index)} changed={(event) => handleChange(event,index)} name={person.name} age={person.age} key={index} />
+                 })}
+              </div>
+             ) : null}
+            </div>
+    )
+  }
+}
+
+export default App 
