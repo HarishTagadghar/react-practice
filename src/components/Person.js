@@ -2,11 +2,7 @@ import React from 'react';
 import '../App.css'
 class Person extends React.Component {
     render() {
-        let num = Math.random();
-        console.log(num);
-        if (num > 0.7) {
-            throw new Error('handle this error with error boundary of react')
-        }
+      
         return (
             <div className="box">
                 <p>Name : {this.props.name} </p>

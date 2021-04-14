@@ -40,10 +40,8 @@ state = {
              {this.state.toggle ? (
               <div>
                  {this.state.persons.map((person,index) => {
-                   return <ErrorBoundary key={index} >
-
-                   <Person clicked = {(event) => handleDelete(event , index)} changed={(event) => this.handleChange(event,index)} name={person.name} age={person.age} />
-                   </ErrorBoundary>
+                   return <Person clicked = {(event) => handleDelete(event , index)} changed={(event) => this.handleChange(event,index)} name={person.name} age={person.age} />
+                  
                  })}
               </div>
              ) : null}
