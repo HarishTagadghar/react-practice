@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css';
+import ErrorBoundary from './components/ErrorBoundary';
 import Person from './components/Person'
 class App extends React.Component {
 state = {
@@ -10,16 +11,16 @@ state = {
   ],
   toggle:false
 }
+ handleChange = (e,i) => {
+  let person = this.state.persons[i];
+  person.name = e.target.value;
+  let  persons = [...this.state.persons]
+  persons[i] = person
+  this.setState({persons})
+  }
 
   render() {
-    const handleChange = (e,i) => {
-      let person = this.state.persons[i];
-      person.name = e.target.value;
-      let  persons = [...this.state.persons]
-      persons[i] = person
-      this.setState({persons})
-      }
-
+    
       const handletoggle = () => {
         let tog = this.state.toggle;
         this.setState({toggle : !tog})
@@ -39,7 +40,10 @@ state = {
              {this.state.toggle ? (
               <div>
                  {this.state.persons.map((person,index) => {
-                   return <Person clicked = {(event) => handleDelete(event , index)} changed={(event) => handleChange(event,index)} name={person.name} age={person.age} key={index} />
+                   return <ErrorBoundary key={index} >
+
+                   <Person clicked = {(event) => handleDelete(event , index)} changed={(event) => this.handleChange(event,index)} name={person.name} age={person.age} />
+                   </ErrorBoundary>
                  })}
               </div>
              ) : null}
