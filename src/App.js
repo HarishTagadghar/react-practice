@@ -1,8 +1,10 @@
 import React from 'react'
 import './App.css';
+import Cockpit from './components/Cockpit';
 import ErrorBoundary from './components/ErrorBoundary';
 import Person from './components/Person'
 import Persons from './components/Persons';
+
 class App extends React.Component {
 state = {
   persons :[
@@ -35,23 +37,15 @@ state = {
       }
     return (
             <div className="center">
-              <h1 >React Practice</h1>
-              <button onClick={handletoggle}>Toggle</button>
-      
+              
+              <Cockpit clicked={handletoggle} />
              {this.state.toggle ? (
               <div>
               <Persons
               persons={this.state.persons}
               clicked={handleDelete}
               changed={this.handleChange} />
-                 {/* {this.state.persons.map((person,index) => {
-                   return <Person key={index} 
-                   clicked = {(event) => handleDelete(event , index)}
-                   changed={(event) => this.handleChange(event,index)}
-                   name={person.name}
-                   age={person.age} />
-                  
-                 })} */}
+                
               </div>
              ) : null}
             </div>
