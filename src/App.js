@@ -4,6 +4,7 @@ import Cockpit from './components/Cockpit';
 // import ErrorBoundary from './components/ErrorBoundary';
 // import Person from './components/Person'
 import Persons from './components/Persons';
+import AuthContext from './context/Auth-context';
 
 class App extends React.Component {
 state = {
@@ -12,7 +13,8 @@ state = {
     {name:"sandy",age:21},
     {name:"jack",age:23}
   ],
-  toggle:false
+  toggle:false,
+  authenticated:false
 }
  handleChange = (e,i) => {
   let person = this.state.persons[i];
@@ -20,6 +22,10 @@ state = {
   let  persons = [...this.state.persons]
   persons[i] = person
   this.setState({persons})
+  }
+
+  loginHandler = () => {
+    this.setState({authenticated : !this.state.authenticated})
   }
 
   render() {
@@ -37,7 +43,8 @@ state = {
       }
     return (
             <div className="center">
-              
+              <AuthContext.Provider value={{authenticated:this.state.authenticated , login : this.loginHandler}}>
+
               <Cockpit clicked={handletoggle} />
              {this.state.toggle ? (
               <div>
@@ -48,6 +55,9 @@ state = {
                 
               </div>
              ) : null}
+             
+              </AuthContext.Provider>
+              
             </div>
     )
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
-import propTypes from 'prop-types'
+import propTypes from 'prop-types';
+import AuthContext from '../context/Auth-context';
 class Person extends React.Component {
     constructor(props) {
         super(props)
@@ -14,6 +15,9 @@ class Person extends React.Component {
       
         return (
             <div className="box cockpit">
+            <AuthContext.Consumer>
+                {(context)=>  context.authenticated ? 'Authenticate!' : 'Please login'}
+            </AuthContext.Consumer>
                 <p>Name : {this.props.name} </p>
                 <p>Age : {this.props.age} </p>
                 <input type="text" ref={this.referenceElement} onChange={this.props.changed} value={this.props.name}/>
