@@ -1,4 +1,4 @@
-import React , {useEffect ,useState} from 'react';
+import React , {useEffect ,useState , useContext} from 'react';
 import AuthContext from '../context/Auth-context';
 // class Cockpit extends React.Component {
 //     render() {
@@ -17,7 +17,7 @@ const Cockpit = (props) => {
 
 let refElement = React.useRef(null);
 let [show , setShow] = useState(true)
-
+let authcontext = useContext(AuthContext)
 useEffect(() => {
 setTimeout(() => {
     refElement.current.click()
@@ -28,9 +28,10 @@ setTimeout(() => {
         <div className="cockpit">
         <h1 >React Practice</h1>
           <button ref={refElement} onClick={props.clicked} className="cockpit">Toggle</button>
-            <AuthContext.Consumer>
+            {/* <AuthContext.Consumer>
                 {(context) => <button onClick={context.login}>Log In</button>}
-            </AuthContext.Consumer>
+            </AuthContext.Consumer> */}
+            <button onClick={authcontext.login}>Log In</button>
         <div>
             {show ? 'WAIT FOR 2 SEC' : null}
         </div>
