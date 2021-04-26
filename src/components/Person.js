@@ -2,13 +2,21 @@ import React from 'react';
 import '../App.css';
 import propTypes from 'prop-types'
 class Person extends React.Component {
+    constructor(props) {
+        super(props)
+        this.referenceElement = React.createRef();
+    }
+    componentDidMount() {
+        this.referenceElement.current.focus()
+        console.log(this.referenceElement);
+    }
     render() {
       
         return (
-            <div className="box">
+            <div className="box cockpit">
                 <p>Name : {this.props.name} </p>
                 <p>Age : {this.props.age} </p>
-                <input type="text" onChange={this.props.changed} value={this.props.name}/>
+                <input type="text" ref={this.referenceElement} onChange={this.props.changed} value={this.props.name}/>
                 <button className="delete" style={{cursor:'pointer'}} onClick={this.props.clicked}>Delete</button>
             </div>
         )
