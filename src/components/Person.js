@@ -1,5 +1,6 @@
 import React from 'react';
-import '../App.css'
+import '../App.css';
+import propTypes from 'prop-types'
 class Person extends React.Component {
     render() {
       
@@ -14,4 +15,11 @@ class Person extends React.Component {
     }
 }
 
+Person.propTypes = {
+    clicked: propTypes.func,
+    changed: propTypes.func,
+    name: propTypes.string,
+    age: propTypes.number
+  }
+  
 export default Person

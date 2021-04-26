@@ -1,8 +1,8 @@
 import React from 'react'
 import './App.css';
 import Cockpit from './components/Cockpit';
-import ErrorBoundary from './components/ErrorBoundary';
-import Person from './components/Person'
+// import ErrorBoundary from './components/ErrorBoundary';
+// import Person from './components/Person'
 import Persons from './components/Persons';
 
 class App extends React.Component {
@@ -33,7 +33,7 @@ state = {
       persons.splice(i , 1)
 
       this.setState({persons : persons})
-
+      
       }
     return (
             <div className="center">
